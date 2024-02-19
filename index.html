@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row bg-dark py-2">
+                <div class="col-12 header-parent">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-3">
+                            <div class="header-logo">
+                                <h3 class="text-white">RECIPE BOOK</h3>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="header-content">
+                                <nav class="nav-1 d-flex align-items-center justify-content-end">
+                                    <div class="input-group me-2 me-sm-3 in-hide">
+                                        <span class="input-group-text" id="srcIcon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </span>
+                                        <input type="text" id="srch-input" class="form-control rounded-end-3"
+                                            list="myList" placeholder="SEARCH">
+                                        <datalist id="myList"></datalist>
+                                    </div>
+                                    <span><i class="fa-solid fa-bars"></i></span>
+                                </nav>
+                                <nav class="nav-2 text-center bg-dark">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="srcIcon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </span>
+                                        <input type="text" id="srch-input" class="form-control rounded-end-3"
+                                            list="myList" placeholder="SEARCH">
+                                        <datalist id="myList"></datalist>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="row gy-3 px-2" id="row"></div>
+            <button id="createBtn" class="btn btn-primary mt-3">CREATE</button>
+            <div class="row mt-3">
+                <div class="col-lg-5 add-input" id="add-input">
+                    <form action="">
+                        <input type="text" class="form-control" id="name" placeholder="TITLE">
+                        <input type="text" class="form-control my-2" id="img-link" placeholder="IMAGE ADDRESS">
+                        <textarea name="" id="ingredients" cols="30" rows="10" class="form-control my-2"
+                            placeholder="INGREDIENTS"></textarea>
+                        <input type="text" class="form-control" id="price" placeholder="INSTRUCTIONS">
+                        <input type="text" class="form-control mt-2" id="category" placeholder="CUSININE">
+                        <div class="btn-box mt-2">
+                            <button type="button" class="btn btn-secondary py-1" onclick="addProduct()">ADD</button>
+                            <button type="button" class="btn btn-secondary py-1" onclick="backBtn()">BACK</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 upd-input" id="upd-input">
+                    <form action="">
+                        <input type="text" id="id" hidden>
+                        <input type="text" class="form-control" id="edName" placeholder="TITLE">
+                        <input type="text" class="form-control my-2" id="edImg-link" placeholder="IMAGE ADDRESS">
+                        <textarea name="" id="eingredients" cols="30" rows="10" class="form-control my-2"
+                            placeholder="INGREDIENTS"></textarea>
+                        <input type="text" class="form-control" id="edPrice" placeholder="INSTRUCTIONS">
+                        <input type="text" class="form-control mt-2" id="edCategory" placeholder="CUSININE">
+                        <div class="btn-box mt-2">
+                            <button type="button" class="btn btn-secondary py-1"
+                                onclick="updateProduct()">UPDATE</button>
+                            <button onclick="backBtn()" type="button" class="btn btn-secondary py-1">BACK</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.fa-bars').click(function (e) {
+            e.preventDefault()
+
+            $('.nav-2').slideToggle()
+        })
+    })
+</script>
+<!-- <script>
+    var existProduct = JSON.parse(localStorage.getItem('existProduct'));
+    function printAll() {
+        // console.log(products)
+        let data = "";
+        existProduct.forEach((val, index) => {
+            data += `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 shadow d-flex justify-content-between">
+                        <div class="card-img text-center">
+                            <img src="${val.image}"
+                                alt="" width="150px">
+                        </div>
+                        <div class="card-content mt-4">
+                            <h2 class="">NAME: ${val.name}</h2>
+                            <span>PRICE: $${val.price}</span>
+                            <span class="d-block">CATEGORY: ${val.category}</span>
+                            <div class="card-btn mt-2">
+                                <button class="btn btn-primary py-1" onclick="edit(${index})">EDIT</button>
+                                <button class="btn btn-danger py-1" onclick="dele(${index})">DELETE</button>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        document.getElementById('row').innerHTML = data;
+        srchInput(existProduct);
+        saveToLocalStorage();
+    }
+
+    create.addEventListener('click', () => {
+        document.getElementById('add-input').style.display = 'block';
+        document.getElementById('upd-input').style.display = 'none';
+    })
+
+    let idx = 3;
+    function addProduct() {
+        const toBeadd = {
+            id: idx++,
+            name: document.getElementById('name').value,
+            image: document.getElementById('img-link').value,
+            price: document.getElementById('price').value,
+            category: document.getElementById('category').value,
+        };
+
+        existProduct.push(toBeadd);
+        saveToLocalStorage();
+        printAll();
+        document.getElementById('add-input').style.display = 'none'
+    }
+
+    function edit(getId) {
+        const toBeEdit = existProduct.find((val) => {
+            return val.id === getId;
+        })
+        document.querySelector('#id').value = toBeEdit.id;
+        document.querySelector('#edName').value = toBeEdit.name;
+        document.querySelector('#edImg-link').value = toBeEdit.image;
+        document.querySelector('#edPrice').value = toBeEdit.price;
+        document.querySelector('#edCategory').value = toBeEdit.category;
+        document.getElementById('upd-input').style.display = 'block';
+        document.getElementById('add-input').style.display = 'none';
+    }
+
+    function updateProduct() {
+        let id = parseInt(document.querySelector('#id').value);
+        let name = document.querySelector('#edName').value;
+        let image = document.querySelector('#edImg-link').value;
+        let price = document.querySelector('#edPrice').value;
+        let category = document.querySelector('#edCategory').value;
+
+        let updateObj = { id, name, image, price, category };
+        console.log(updateObj)
+        const getIndex = existProduct.findIndex((val) => {
+            return val.id === updateObj.id;
+        })
+
+        existProduct[getIndex] = updateObj;
+        saveToLocalStorage();
+        printAll();
+        document.getElementById('upd-input').style.display = 'none';
+    }
+
+    function dele(getId) {
+        existProduct.splice(getId, 1);
+        saveToLocalStorage();
+        printAll();
+    }
+
+    function srchInput(existProduct) {
+        let srchData = "";
+        existProduct.forEach((val) => {
+            srchData += `<option value="${val.name}">${val.name}</option>`
+        })
+        document.getElementById('myList').innerHTML = srchData;
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem('existProduct', JSON.stringify(existProduct));
+    }
+</script> -->

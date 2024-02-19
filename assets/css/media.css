@@ -1,0 +1,13 @@
+@media (max-width:768px){
+    .fa-bars{
+        display: inline-block;
+    }
+
+    .header-content .nav-1 .a-hide{
+        display:none;
+      }
+
+    .in-hide{
+        display:none;
+    }
+}

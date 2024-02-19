@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Mono", monospace;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    border: none;
+    height: 100%;
+}
+
+.card-content h2 {
+    color: lightyellow;
+    line-height: 0.8;
+}
+
+.card-content p {
+    color: lightyellow;
+    font-size: 23px;
+}
+
+.card-content span {
+    font-size: 25px;
+    color: wheat;
+}
+
+.header-content nav a {
+    font-size: 30px;
+    margin: 0 10px 0 0;
+    text-decoration: none;
+    color: white;
+}
+
+.header-content .nav-1 a {
+    font-size: 30px;
+    margin: 0 10px 0 0;
+    text-decoration: none;
+    color: white;
+}
+
+.fa-bars {
+    font-size: 30px;
+    color: white;
+    display: none;
+}
+
+#header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header-content .nav-1 .a-hide {
+    display: inline-block;
+}
+
+.header-parent {
+    position: relative;
+}
+
+.header-content .nav-2 {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 53px;
+    padding: 10px 15px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 999;
+}
+
+.header-content .nav-2 a {
+    display: block;
+    color: white;
+    font-size: 29px;
+}
+
+.header-content #srch-input{
+    background-color: rgba(225, 225, 225, 1.1);
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+}
+
+#srch-input::placeholder{
+    font-size: 20px;
+}
+
+.input-group{
+    width: 250px;
+}
+
+.add-input,.upd-input{
+    display: none;
+}
