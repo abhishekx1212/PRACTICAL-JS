@@ -103,16 +103,20 @@ function updateProduct() {
     let price = document.querySelector('#edPrice').value;
     let category = document.querySelector('#edCategory').value;
 
-    let updateObj = { id, name, image, ingredients, price, category };
-    const getIndex = existProduct.findIndex((val) => {
-        return val.id === updateObj.id;
-    })
+    if (id == "" || name == "" || image == "" || ingredients == "" || price == "" || category == "") {
+        alert("Incomplete information!..")
+    } else {
+        let updateObj = { id, name, image, ingredients, price, category };
+        const getIndex = existProduct.findIndex((val) => {
+            return val.id === updateObj.id;
+        })
 
-    existProduct[getIndex] = updateObj;
-    saveToLocalStorage();
-    printAll();
-    document.getElementById('upd-input').style.display = 'none';
-    create.style.display = 'block';
+        existProduct[getIndex] = updateObj;
+        saveToLocalStorage();
+        printAll();
+        document.getElementById('upd-input').style.display = 'none';
+        create.style.display = 'block';
+    }
 }
 
 function dele(getId) {
