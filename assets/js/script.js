@@ -103,7 +103,7 @@ function updateProduct() {
     let price = document.querySelector('#edPrice').value;
     let category = document.querySelector('#edCategory').value;
 
-    if (id == "" || name == "" || image == "" || ingredients == "" || price == "" || category == "") {
+    if (id === "" || name === "" || image === "" || ingredients === "" || price === "" || category === "") {
         alert("Incomplete information!..")
     } else {
         let updateObj = { id, name, image, ingredients, price, category };
